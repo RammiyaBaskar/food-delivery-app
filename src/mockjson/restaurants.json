@@ -1,0 +1,79 @@
+{
+    "restaurants": [
+      {
+        "id": 1,
+        "name": "Spicy Grill",
+        "cuisine": "Indian",
+        "rating": 4.5,
+        "image": "https://example.com/spicygrill.jpg",
+        "menu": [
+          {
+            "id": 101,
+            "name": "Butter Chicken",
+            "price": 12.99,
+            "category": "Main Course",
+            "image": "https://example.com/butterchicken.jpg"
+          },
+          {
+            "id": 102,
+            "name": "Paneer Tikka",
+            "price": 9.99,
+            "category": "Appetizers",
+            "image": "https://example.com/paneertikka.jpg"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Pasta Palace",
+        "cuisine": "Italian",
+        "rating": 4.3,
+        "image": "https://example.com/pastapalace.jpg",
+        "menu": [
+          {
+            "id": 201,
+            "name": "Margherita Pizza",
+            "price": 14.99,
+            "category": "Pizza",
+            "image": "https://example.com/margheritapizza.jpg"
+          },
+          {
+            "id": 202,
+            "name": "Spaghetti Carbonara",
+            "price": 13.49,
+            "category": "Pasta",
+            "image": "https://example.com/spaghetticarbonara.jpg"
+          }
+        ]
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "address": "123 Main St, New York, NY",
+        "phone": "+1234567890"
+      }
+    ],
+    "orders": [
+      {
+        "id": 1,
+        "userId": 1,
+        "restaurantId": 1,
+        "items": [
+          {
+            "menuId": 101,
+            "quantity": 2
+          },
+          {
+            "menuId": 102,
+            "quantity": 1
+          }
+        ],
+        "totalPrice": 35.97,
+        "status": "Preparing",
+        "orderDate": "2025-03-17T12:00:00Z"
+      }
+    ]
+  }
