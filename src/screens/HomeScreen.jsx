@@ -15,6 +15,15 @@ import Image5 from "../assets/menu/burger-15.jpg"
 import Image6 from "../assets/menu/burger-16.jpg"
 import Image7 from "../assets/menu/burger-17.jpg"
 import Image8 from "../assets/menu/burger-18.jpg"
+import Image9 from "../assets/menu/pizza_1.jpg"
+import Image10 from "../assets/menu/pizza_2.jpg"
+import Image11 from "../assets/menu/pizza_3.jpg"
+import Image12 from "../assets/menu/pizza_4.jpg"
+import Image13 from "../assets/menu/biryani_1.jpg"
+import Image14 from "../assets/menu/biryani_2.jpg"
+import Image15 from "../assets/menu/biryani_3.jpg"
+import Image16 from "../assets/menu/biryani_4.jpg"
+import Image17 from "../assets/menu/biryani_5.jpg"
 import Card from '../components/Card'
 
 
@@ -33,6 +42,7 @@ const mockData = [
     paragraph: "Chicken breast, chilli sauce, tomatoes, pickles, coleslaw",
     rating: 5,
     price: 99.15,
+    category: "Burger",
   },
   {
     id: "0002",
@@ -41,6 +51,8 @@ const mockData = [
     paragraph: "House patty, cheddar cheese, bacon, onion, mustard",
     rating: 4.5,
     price: 99.32,
+    category: "Burger",
+
   },
   {
     id: "0003",
@@ -49,6 +61,8 @@ const mockData = [
     paragraph: "American cheese, tomato relish, avocado, lettuce, red onion",
     rating: 4,
     price: 69.15,
+    category: "Burger",
+
   },
   {
     id: "0004",
@@ -57,6 +71,8 @@ const mockData = [
     paragraph: "House patty, cheddar cheese, bacon, onion, mustard",
     rating: 3.5,
     price: 99.25,
+    category: "Burger",
+
   },
   {
     id: "0005",
@@ -65,6 +81,8 @@ const mockData = [
     paragraph: "2 patties, cheddar cheese, mustard, pickles, tomatoes",
     rating: 3.0,
     price: 59.25,
+    category: "Burger",
+
   },
   {
     id: "0006",
@@ -73,6 +91,8 @@ const mockData = [
     paragraph: "Turkey, cheddar cheese, onion, lettuce, tomatoes, pickles",
     rating: 3,
     price: 79.18,
+    category: "Burger",
+
   },
   {
     id: "0007",
@@ -81,6 +101,8 @@ const mockData = [
     paragraph: "patty, cheddar cheese, onion, lettuce, tomatoes, pickles",
     rating: 2.5,
     price: 99.19,
+    category: "Burger",
+
   },
   {
     id: "0008",
@@ -89,6 +111,96 @@ const mockData = [
     paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
     rating: 2.0,
     price: 89.12,
+    category: "Burger",
+
+  },
+  {
+    id: "0009",
+    image: Image9 ,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+
+  },
+  {
+    id: "00010",
+    image: Image10,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+     },
+  {
+    id: "00011",
+    image: Image11,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+  },
+  {
+    id: "00012",
+    image: Image12,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+
+  },
+  {
+    id: "00013",
+    image: Image13,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+
+  },
+  {
+    id: "00014",
+    image: Image14,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+
+  },
+  {
+    id: "00015",
+    image: Image15,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+
+  },
+  {
+    id: "00016",
+    image: Image16,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+
+  },
+  {
+    id: "00017",
+    image: Image17,
+    title: "Classic Burger",
+    paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
+    rating: 2.0,
+    price: 89.12,
+    category: "Pizza",
+
   },
   // Add more mock data objects as needed
 ];

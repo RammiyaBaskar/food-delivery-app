@@ -1,13 +1,13 @@
 import React from 'react'
 import { Col,Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
+import CartPage from '../screens/CartPage'
 export default function Cards(props) {
   return (
     <Col sm={6} lg={4} xl={3} className='mb-4'>
         
         <Card className='overflow-hidden'>
-            <div className='overflow-hidden'>
+            <div className='overflow-hidden' style={{ height: "180px" }}>
                 <Card.Img variant="top" src={props.image} />
             </div>
         
@@ -31,7 +31,7 @@ export default function Cards(props) {
                         <h5 className='mb-0'>{props.price} $</h5>
                     </div>
                     <div className='add_to_cart'>
-                        <Link to="/">
+                        <Link to="/CartPage">
                             <i className='bi bi-bag me-2'></i>
                             Add to Cart
 
