@@ -9,6 +9,12 @@ const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+  const [fullName, setFullName] = useState('');
+  const [user, setUser] = useState(null);
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,6 +37,44 @@ const Header = () => {
     alert(`Searching for: ${searchTerm}`); // Replace with actual search function
   };
 
+  
+  const validate = () => {
+    const newErrors = {};
+    if (!fullName.trim()) {
+      newErrors.fullName = 'Full Name is required';
+    } else if (fullName.trim().length < 2) {
+      newErrors.fullName = 'Full Name must be at least 2 characters';
+    }
+
+    if (!email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'Email is invalid';
+    }
+
+    if (!password) {
+      newErrors.password = 'Password is required';
+    } else if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      setUser({ fullName });
+      console.log('Logging in with:', { email, password });
+      alert('Login Successful!:'+email);
+      console.log('Signing up:', { fullName, email, password });
+      alert('Signing up Successful!:${email}');
+      setShowLogin(false);
+      setShowSignUp(false);
+    }
+  };
+
   return (
     <div>
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "orange" }}>
@@ -42,7 +86,7 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto  d-flex align-items-center">
 
-            {/* 🔍 SEARCH BAR */}
+            {/*  SEARCH BAR */}
             <li className="nav-item me-3">
               <Form className="d-flex" onSubmit={handleSearch}>
                 <FormControl
@@ -66,32 +110,54 @@ const Header = () => {
               <a className="nav-link text-white" href="/contact">Contact</a>
             </li> */}
             <li className="nav-item">
-            <a className="nav-item text-white"
-             style={{ cursor: "pointer", textDecoration: "none" }}
-                        onClick={() => setShowLogin(true)}>
-                      Login
-            </a>
+            {user ? (
+  <span className="nav-item text-white fw-bold">Hello {user.fullName}</span>
+) : (
+  <a className="nav-item text-white"
+     style={{ cursor: "pointer", textDecoration: "none" }}
+     onClick={() => setShowLogin(true)}>
+     Login
+  </a>
+)}
+            
           </li>
           </ul>
         </div>
       </div>
     </nav>
-    {/* Bootstrap Modal */}
+   
     <Modal show={showLogin} onHide={() => setShowLogin(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-                    <Form>
+                    <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control 
+              type="email"
+               placeholder="Enter email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              isInvalid={!!errors.email}/>
+              <Form.Control.Feedback type="invalid">
+              {errors.email}
+            </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Enter password" />
+              <Form.Control
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              isInvalid={!!errors.password}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.password}
+            </Form.Control.Feedback>
             </Form.Group>
-            <Button variant="primary" className="w-100">
+            <Button onClick={handleLogin} variant="primary" className="w-100">
               Login
             </Button>
             <p className="forgot-password text-right">
@@ -105,54 +171,81 @@ const Header = () => {
       </Modal>
 
       <Modal show={showSignUp} onHide={() => setShowSignUp(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign Up</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            {/* Full Name */}
-            <Form.Group className="mb-3">
-              <Form.Label>Full Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter your full name" required />
-            </Form.Group>
+      <Modal.Header closeButton>
+        <Modal.Title>Sign Up</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form onSubmit={handleLogin}>
+          {/* Full Name */}
+          <Form.Group className="mb-3">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your full name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              isInvalid={!!errors.fullName}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.fullName}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-            {/* Email */}
-            <Form.Group className="mb-3">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" required />
-            </Form.Group>
+          {/* Email */}
+          <Form.Group className="mb-3">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              isInvalid={!!errors.email}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.email}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-            {/* Password */}
-            <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Enter password" required />
-            </Form.Group>
+          {/* Password */}
+          <Form.Group className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              isInvalid={!!errors.password}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.password}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-            {/* Sign Up Button */}
-            <Button variant="primary" className="w-100" type="submit" onClick={handleSubmit}>
-              Sign Up
-            </Button>
+          {/* Sign Up Button */}
+          <Button variant="primary" className="w-100" type="submit">
+            Sign Up
+          </Button>
 
-            {/* Switch to Login */}
-            <div className="mt-3 text-center">
-              <p className="mb-1">
-                Already have an account?  
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowSignUp(false);
-                    setShowLogin(true);
-                  }}
-                  style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
-                >
-                  Login
-                </a>
-              </p>
-            </div>
-          </Form>
-        </Modal.Body>
-      </Modal>
+          {/* Switch to Login */}
+          <div className="mt-3 text-center">
+            <p className="mb-1">
+              Already have an account?{' '}
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowSignUp(false);
+                  setShowLogin(true);
+                }}
+                style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}
+              >
+                Login
+              </a>
+            </p>
+          </div>
+        </Form>
+      </Modal.Body>
+    </Modal>
     </div>  );
 };
 
