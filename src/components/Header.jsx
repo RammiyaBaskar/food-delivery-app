@@ -2,6 +2,7 @@ import React,{ useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button, Form ,FormControl} from "react-bootstrap";
+import axios from "axios";
 
 const Header = () => {
 
@@ -40,11 +41,11 @@ const Header = () => {
   
   const validate = () => {
     const newErrors = {};
-    if (!fullName.trim()) {
-      newErrors.fullName = 'Full Name is required';
-    } else if (fullName.trim().length < 2) {
-      newErrors.fullName = 'Full Name must be at least 2 characters';
-    }
+    // if (!fullName.trim()) {
+    //   newErrors.fullName = 'Full Name is required';
+    // } else if (fullName.trim().length < 2) {
+    //   newErrors.fullName = 'Full Name must be at least 2 characters';
+    // }
 
     if (!email) {
       newErrors.email = 'Email is required';
@@ -62,16 +63,33 @@ const Header = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (validate()) {
-      setUser({ fullName });
-      console.log('Logging in with:', { email, password });
-      alert('Login Successful!:'+email);
-      console.log('Signing up:', { fullName, email, password });
-      alert('Signing up Successful!:${email}');
-      setShowLogin(false);
-      setShowSignUp(false);
+    //  setUser({ fullName });
+      try {
+        const response = await axios.get("http://localhost:5000/users", {
+          params: { email },
+        });
+  
+        const userData = response.data.find((user) => user.password === password);
+        if (userData) {
+          setUser(userData.fullName);
+          alert(`Login Successful: ${userData.fullName}`);
+          setShowLogin(false);
+        } else {
+          alert("Invalid email or password.");
+        }
+      } catch (error) {
+        console.error("Error fetching user data", error);
+        alert("Error logging in. Please try again later.");
+      }
+      // console.log('Logging in with:', { email, password });
+      // alert('Login Successful!:'+email);
+      // console.log('Signing up:', { fullName, email, password });
+      // alert('Signing up Successful!:${email}');
+       setShowLogin(false);
+       setShowSignUp(false);
     }
   };
 
@@ -111,7 +129,7 @@ const Header = () => {
             </li> */}
             <li className="nav-item">
             {user ? (
-  <span className="nav-item text-white fw-bold">Hello {user.fullName}</span>
+  <span className="nav-item text-white fw-bold">Hello {user}</span>
 ) : (
   <a className="nav-item text-white"
      style={{ cursor: "pointer", textDecoration: "none" }}

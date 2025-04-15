@@ -1,12 +1,16 @@
-[
-    {
-      "fullName": "Alice Johnson",
-      "email": "alice@example.com",
-      "password": "password123"
-    },
-    {
-      "fullName": "Bob Smith",
-      "email": "bob@example.com",
-      "password": "secure456"
-    }
-  ]
+{
+    "users": [
+      {
+        "id": 1,
+        "fullName": "Alice Johnson",
+        "email": "alice@example.com",
+        "password": "password123"
+      },
+      {
+        "id": 2,
+        "fullName": "Bob Smith",
+        "email": "bob@example.com",
+        "password": "secure456"
+      }
+    ]
+  }
